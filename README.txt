@@ -1,3 +1,6 @@
+    README Instructions
+    
+V5 changes: 
 Menu Options:
     1. Analyze Parkour Video: Process video file or webcam feed
 

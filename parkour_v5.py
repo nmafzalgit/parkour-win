@@ -1601,7 +1601,8 @@ class ProgressTracker:
         
         print(f"Progress charts saved: {chart_path}")
         return chart_path
-def _display_results( results):
+
+def display_results(results):
     """Display analysis results"""
     print("\n=== Analysis Results ===")
     print(f"Agility Score: {results['agility_score']:.1f}/100")
@@ -1622,7 +1623,7 @@ def _display_results( results):
         pro_match = results['pro_comparison'].get('overall_match', 0)
         print(f"\nPro Comparison: {pro_match:.1f}% match with Dom Tomato's technique")
 
-def _view_progress(athlete):
+def view_progress(athlete):
     """View athlete progress"""
     print(f"\n=== {athlete.name}'s Progress ===")
     print(f"Total Attempts: {len(athlete.attempts)}")
@@ -1646,7 +1647,7 @@ def _view_progress(athlete):
     else:
         print("No attempts recorded yet.")
 
-def _add_new_athlete(tracker):
+def add_new_athlete(tracker):
     """Add new athlete"""
     print("\n=== Add New Athlete ===")
     name = input("Name: ").strip()
@@ -1689,7 +1690,7 @@ def main():
     # Create sample athlete
     athlete = ParkourAthlete(
         athlete_id=1,
-        name="Sample Athlete",
+        name="Alex Johnson",
         age=24,
         weight=75,
         height=180,
@@ -1705,7 +1706,6 @@ def main():
         target_zones=[
             (300, 200, 500, 250),  # Takeoff zone
             (600, 180, 800, 220),  # Landing zone
-            (100, 200, 150,250)
         ]
     )
     tracker.add_obstacle(obstacle)
@@ -1732,7 +1732,7 @@ def main():
                 results = analyzer.process_video(0, athlete, obstacle)
                 
                 if results:
-                    _display_results(results)
+                    display_results(results)
             
             except Exception as e:
                 print(f"Error during analysis: {e}")
@@ -1754,14 +1754,14 @@ def main():
                 results = analyzer.process_video(video_path, athlete, obstacle)
                 
                 if results:
-                    _display_results(results)
+                    display_results(results)
             
             except Exception as e:
                 print(f"Error during analysis: {e}")
         
         elif choice == "3":
             # View progress
-            _view_progress(athlete)
+            view_progress(athlete)
         
         elif choice == "4":
             # Generate charts
@@ -1774,7 +1774,7 @@ def main():
         
         elif choice == "5":
             # Add new athlete
-            _add_new_athlete(tracker)
+            add_new_athlete(tracker)
         
         elif choice == "6":
             print("Exiting Parkour Analysis Framework. Goodbye!")
@@ -1782,13 +1782,6 @@ def main():
         
         else:
             print("Invalid choice. Please try again.")
-
-
-
-# Monkey patch methods to main for simplicity
-main._display_results = _display_results
-main._view_progress = _view_progress
-main._add_new_athlete = _add_new_athlete
 
 if __name__ == "__main__":
     main()
